@@ -17,7 +17,7 @@
 #include "pid.h"
 
 
-sbit led_pin    = P2^7;
+sbit led_pin    = P1^5;
 
 sbit heat_pin = P2^1;
 

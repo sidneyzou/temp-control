@@ -8,5 +8,5 @@ void Read_RTC(void);
 void Set_RTC(void);
 void Read_RTC_Char(void);
 
-
+void RTC_Iint(void);
 #endif

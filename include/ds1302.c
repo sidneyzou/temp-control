@@ -15,7 +15,7 @@ unsigned char l_timer[7]={0x00,26,11,6,5,5,16};
 u8 l_time_buf0[11] = "2015-11-13";
 u8 l_time_buf1[11] = "12:30 20";
 
-char g_rtc[6];
+u8 g_rtc[6];
 
 /************写字节到DS1302*******************************************/
 void Write_Ds1302_Byte(unsigned  char temp) 
@@ -74,12 +74,13 @@ void Read_RTC()		//读取 日历
  		 l_timer[i]=Read_Ds1302(*p);
  		 p++;
  	}
-	g_rtc[0] = (l_timer[6]>>4) * 10 + l_timer[6]&0x0f;
-	g_rtc[1] = (l_timer[4]>>4) * 10 + l_timer[4]&0x0f;
-	g_rtc[2] = (l_timer[3]>>4) * 10 + l_timer[3]&0x0f;
-	g_rtc[3] = (l_timer[2]>>4) * 10 + l_timer[2]&0x0f;
-	g_rtc[4] = (l_timer[1]>>4) * 10 + l_timer[1]&0x0f;
-	g_rtc[5] = (l_timer[0]>>4) * 10 + l_timer[0]&0x0f;
+
+	g_rtc[0] = ((l_timer[6] >> 4) * 10) + (l_timer[6]&0x0f);
+	g_rtc[1] = ((l_timer[4] >> 4) * 10) + (l_timer[4]&0x0f);
+	g_rtc[2] = ((l_timer[3] >> 4) * 10) + (l_timer[3]&0x0f);
+	g_rtc[3] = ((l_timer[2] >> 4) * 10) + (l_timer[2]&0x0f);
+	g_rtc[4] = ((l_timer[1] >> 4) * 10) + (l_timer[1]&0x0f);
+	g_rtc[5] = ((l_timer[0] >> 4) * 10) + (l_timer[0]&0x0f);
 	
 }
 
@@ -147,4 +148,10 @@ void Set_RTC()
  		 p++;  
 	 }
 	 Write_Ds1302(0x8E,0x80);		//关闭写允许
+}
+
+void RTC_Iint(void)
+{
+	Read_RTC();
+
 }

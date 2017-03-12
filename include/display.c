@@ -41,7 +41,6 @@ static void __ShowBlink(enum blink mode, u8 en)
 {
 	u8 i = 0;
 	if (en) {
-		led_pin = 0;
 		switch (mode) {
 		case BLINK_NONE:
 			Read_RTC_Char();
@@ -82,7 +81,6 @@ static void __ShowBlink(enum blink mode, u8 en)
 		
 		
 		}
-		led_pin = 1;
 	} else {
 		Read_RTC_Char();
 	}

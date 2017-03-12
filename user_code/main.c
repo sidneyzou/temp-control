@@ -1,8 +1,6 @@
 #include "head.h"
 
 
-
-
 void main() {
   
 	/* 定时器初始化 */
@@ -20,9 +18,14 @@ void main() {
 	/* 打开总中断 */
     EA = 1;
 	
-	Read_RTC();
+	/* PID初始化 */
+	Init_pid();
+	
+	RTC_Iint();
 	
 	ShowMenu();
+	
+	
     while(1){
 
          entry();
